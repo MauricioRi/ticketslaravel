@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RutasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 Route::get('/',HomeController::class);
+Route::get('/rutas', [RutasController::class,'index']);
+Route::get('/rutas/create', [RutasController::class,'create']);
+Route::get('/rutas/{idruta}', [RutasController::class,'show']);
+
 // Route::get('/', function () {
 //     return view('welcome');
     
