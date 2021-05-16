@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    <h1>Login</h1>
     @yield('content')
 </body>
 </html>
