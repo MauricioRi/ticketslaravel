@@ -16,7 +16,9 @@ use App\Http\Controllers\LoginController;
 */
 Route::get('/',HomeController::class);
 //Route::get('/','HomeController'); para laravel 7
-Route::get('/login/{var}', [LoginController::class,'login']);
+Route::get('/login', [LoginController::class,'login']);
+Route::get('/login/{ruta}', [LoginController::class,'login']);
+
 //Route::get('/rutas', 'RutasController@index'); para laravel 7 7
 Route::get('/rutas/create', [RutasController::class,'create']);
 Route::get('/rutas/{idruta}', [RutasController::class,'show']);

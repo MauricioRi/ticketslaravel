@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function login($var)
+    public function login($ruta)
     {
-        return view('login.login');
+      //  compact("curso"); es igual a ["ruta"=>$ruta]
+        return view('login.login',compact("ruta"));
         //return 'login';
     }
 }

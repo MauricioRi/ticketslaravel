@@ -13,6 +13,6 @@ public function create(){
     return 'creacion';
 }
 public function show ($curso){
-
+    return 'creacion';
 }
 }
