@@ -54,9 +54,9 @@ class RutasController extends Controller
         $request->validate([
           'name'=>'required',
           'description'=> 'required',
-          'numberpoints'=>'required|min:11|numeric'
+          'numberpoints'=>'required|numeric'
           ]);
-        $route->idroutes=null;
+        $route->id=null;
         $route->Name_route=$request->name;
         $route->description=$request->description;
         $route->number_points=$request->numberpoints;
