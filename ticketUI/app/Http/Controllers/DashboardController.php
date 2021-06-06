@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class HomeController extends Controller
+use Illuminate\Http\Request;
+
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
