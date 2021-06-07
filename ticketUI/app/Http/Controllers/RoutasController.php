@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 use App\Models\routes;
 use Hamcrest\Description;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 class RoutasController extends Controller
 {
     /**
@@ -54,7 +55,7 @@ class RoutasController extends Controller
         //  compact("route"); es igual a ["ruta"=>$ruta]
         // return  view('login.login',compact("ruta"));
         // $route=routes::paginate();
-        return  view('rutas.create', ["iduser" => 5]);
+        return  view('rutas.create', ["iduser" => Auth::user()->id]);
 
 
         // $rutas=$route;

@@ -5,7 +5,7 @@
     <div class="wrapper">
 
         <div class="main-panel">
-            h1>Listar Rutas </h1>
+            <h1>Listar Rutas </h1>
             <a href="{{ route('crear_Rutas') }}">crear ruta </a>
 
             <table class="default" border="1">

@@ -72,8 +72,8 @@
 
             // The map, centered at Uluru
             map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 4,
-                center: new google.maps.LatLng(36.236797, -112.956333),
+                zoom: 13,
+                center: new google.maps.LatLng(19.7059504, -101.1971712),
             });
             // The marker, positioned at Uluru
             const drawingManager = new google.maps.drawing.DrawingManager({
