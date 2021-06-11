@@ -5,7 +5,9 @@
 <div class="wrapper">
 
     <div class="main-panel">
-        <button onclick="loadGeocercas()">Ver geocercas</button>
+        @isset($geo)
+        @endisset()
+        <button onclick="loadGeocercas()">Ver geocerca {{ $geo[0]->nombre }}</button>
         <div id="map">
 
         </div>
@@ -23,7 +25,9 @@
             p.setMap(null);
         });
         poligonos = new Map();
-        $.get('mapaList', function(data) {
+        id = {!! json_encode($geo->toArray()) !!}[0].id
+
+        $.get('/mapaList/'+id, function(data) {
             for (i = 0; i < data.length; i++) {
                 var datos = data[i].datos;
                 paths = [];
@@ -45,33 +49,33 @@
                     strokeWeight: 2,
                     fillColor: "#FF0000",
                     fillOpacity: 0.35,
-                    editable: false,                    
+                    editable: true,
                     dbid: data[i].id
                 });
 
                 poligonos.set(data[i].id, polygon);
-                
+
                 polygon.getPaths().forEach(function(path, index) {
                     google.maps.event.addListener(path, 'insert_at', function() {
                         updatePolygonCoords(polygon, polygon.dbid)
-                        
+
                     });
 
                     google.maps.event.addListener(path, 'remove_at', function() {
                         updatePolygonCoords(polygon, polygon.dbid)
-                        
+
                     });
 
                     google.maps.event.addListener(path, 'set_at', function() {
                         updatePolygonCoords(polygon, polygon.dbid)
-                        
+
                     });
                 })
                 polygon.setMap(map);
 
-                
 
-                
+
+
             }
         })
     }
@@ -125,7 +129,7 @@
                 zIndex: 1,
             },
         });
-        drawingManager.setMap(map);
+        //drawingManager.setMap(map);
 
         google.maps.event.addListener(drawingManager, 'overlaycomplete', function(polygon) {
             console.log(polygon)
@@ -159,7 +163,7 @@
         if (name != null && name != '') {
 
 
-            $.post('mapapost', {
+            $.post('/mapapost', {
                 "_token": "{{ csrf_token() }}",
                 "datos": array,
                 "name": name
@@ -184,7 +188,7 @@
             array.push(myPolygon.getPath().getAt(i).toUrlValue(5))
         }
 
-        $.post('mapapostupdate', {
+        $.post('/mapapostupdate', {
             "_token": "{{ csrf_token() }}",
             "datos": array,
             "id": id

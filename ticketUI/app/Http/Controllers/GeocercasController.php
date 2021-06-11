@@ -29,9 +29,14 @@ class GeocercasController extends Controller
         return view('geofences');
     }
 
+    public function lista()
+    {
+        return view('list_geofences');
+    }
+
     public function add(Request $req)
     {
-        
+
         $input = $req->all();
         Log::debug($input['name']);
         Log::debug($input['datos']);

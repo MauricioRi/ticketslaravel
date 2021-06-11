@@ -41,6 +41,10 @@ Route::put("rutas_update/{route}", [RutasController::class, "update"])->name("ru
 
 Route::get('/home', [DashboardController::class, 'index']);
 Route::post('/addPunto', [AddMainRouteController::class, 'add'])->name('crear');
-Route::get('/mapa', [GeocercasController::class, 'index'])->name('geo');
+Route::get('/mapa', [GeofencesController::class, 'index'])->name('geo');
+Route::get('mapaList/{id}', [GeofencesController::class, 'getOne']);
 Route::get('mapaList', [GeofencesController::class, 'getAll']);
 Route::post('/mapapost', [GeofencesController::class, 'add']);
+Route::post('/mapapostupdate', [GeofencesController::class, 'update']);
+Route::get('/list_geocercas', [GeofencesController::class, 'lista']);
+Route::get('/edit_geocerca/{id}', [GeofencesController::class, 'editar']);

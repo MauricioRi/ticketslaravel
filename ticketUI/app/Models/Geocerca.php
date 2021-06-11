@@ -15,4 +15,6 @@ class Geocerca extends Model
         'createdBy',
       
     ];
+
+    protected $table = 'geocercas';
 }
