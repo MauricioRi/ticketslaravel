@@ -39,7 +39,14 @@
 
         <button type="submit">crear ruta</button>
      </form>
+     <select class="form-select" aria-label="Default select example">
+        <option selected>Nombre geocerca</option>
+        <option value="1">Maravatio</option>
+        <option value="2">Pazcuaro</option>
+        <option value="3">uriangato</option>
+      </select>
 
+     <button type="submit">Agregar Punto </button>
 
      
 @endsection

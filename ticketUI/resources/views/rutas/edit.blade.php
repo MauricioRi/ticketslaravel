@@ -45,12 +45,12 @@
     <td>CARGANDO...</td>
     {{-- <td><input type="text" id="{{$fila."-".$columna}}" name="{{$fila."-".$columna}}" value="datos..."></td> --}}
     @elseif ($fila==$columna)
-    <td>$<input type="number" id="{{$fila."-".$columna}}" name="{{$fila."-".$columna}}" value="{{$fila.".".$columna}}"></td>
+    <td>$<input type="number" id="{{$fila."-".$columna}}" name="{{$fila."-".$columna}}" value=""></td>
         
 @elseif ($fila>$columna)
 <td>NO DISPONIBLE</td>
 @else
-<td>$<input type="number" id="{{$fila."-".$columna}}" name="{{$fila."-".$columna}}" value="{{$fila.".".$columna}}"></td>   
+<td>$<input type="number" id="{{$fila."-".$columna}}" name="{{$fila."-".$columna}}" value=""></td>   
 
 
 @endif
