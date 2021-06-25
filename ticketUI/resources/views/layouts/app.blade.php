@@ -129,6 +129,13 @@
                             </a>
                         </li>
 
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="material-icons">location_ons</i>
+                                <p>Salir</p>
+                            </a>
+                        </li>
+
 
                     </ul>
                 </div>

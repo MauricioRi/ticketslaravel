@@ -10,5 +10,5 @@ class routes extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table="routes";
-    protected $fillable = ['idroutes ', 'Name_route', 'description'];
+    protected $fillable = ['idroutes ', 'Name_route', 'description','number_points'];
 }
