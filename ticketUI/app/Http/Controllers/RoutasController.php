@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\routes;
 use Hamcrest\Description;
 use Illuminate\Http\Request;
-
+use App\Models\Geocerca;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 class RoutasController extends Controller
@@ -68,16 +68,11 @@ class RoutasController extends Controller
     }
     public function store(Request $request)
     {
-
         // $curso->Name_route="Maravatio por charo";
         // $curso->idroutes=null;
         // $curso->description="Maravatio por charo es sin casetas";
         // $curso->save();
-
         $route = new routes();
-
-
-
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -126,5 +121,11 @@ class RoutasController extends Controller
 
         //return request()->all();
 
+    }
+
+
+    public function cargar(){
+        $route = Geocerca::paginate();
+        Log::debug($route);
     }
 }

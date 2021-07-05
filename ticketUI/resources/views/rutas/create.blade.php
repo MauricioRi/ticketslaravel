@@ -24,13 +24,13 @@
             <small>*{{$message}}</small>
             <br>
         @enderror
-        numero de puntos :
+        {{-- numero de puntos :
         <label for=""><input type="number" value="{{old('numberpoints')}}" name="numberpoints"></label><br>
         @error('numberpoints')
             <br>
             <small>*{{$message}}</small>
             <br>
-        @enderror
+        @enderror --}}
 
 
 
@@ -47,6 +47,6 @@
       </select>
 
      <button type="submit">Agregar Punto </button>
-
-     
+     {{-- C:\xampp\htdocs\ticketslaravel\ticketUI\public\assets\js\rutas\rutas.js --}}
+     <script src="{{ asset('js/rutas/rutas.js')}}"></script>
 @endsection
