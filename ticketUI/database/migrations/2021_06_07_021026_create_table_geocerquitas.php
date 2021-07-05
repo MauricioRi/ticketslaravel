@@ -17,7 +17,7 @@ class CreateTableGeocerquitas extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('datos',500);
-            $table->integer('cratedBy');
+            $table->integer('createdBy');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateTableGeocerquitas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_geocercas');
+        Schema::dropIfExists('geocercas');
     }
 }

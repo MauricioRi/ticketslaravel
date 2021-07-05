@@ -17,7 +17,7 @@ class CreateRoutesTable extends Migration
             // $table->id();
             // $table->timestamps();
             
-            $table->increments('idroutes');
+            $table->increments('id');
             $table-> char('Name_route', 100);
             $table-> char('description', 100);
 

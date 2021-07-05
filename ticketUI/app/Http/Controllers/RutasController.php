@@ -37,7 +37,9 @@ class RutasController extends Controller
     //  compact("route"); es igual a ["ruta"=>$ruta]
     // return  view('login.login',compact("ruta"));
     $route = routes::paginate();
-    Log::debug($route);
+    echo $route; 
+    echo "123";
+        Log::debug($route);
     return  view('ruta', ["ruta" => $route]);
 
 
@@ -54,7 +56,12 @@ class RutasController extends Controller
     //  compact("route"); es igual a ["ruta"=>$ruta]
     // return  view('login.login',compact("ruta"));
     // $route=routes::paginate();
-    return  view('rutas.create', ["iduser" => 5]);
+    // $route = routes::paginate();
+    // Log::debug($route);
+    // return  view('ruta', ["ruta" => $route]);
+
+
+    return  view('rutas.create', ["idCompany" => 5]);
 
 
     // $rutas=$route;
