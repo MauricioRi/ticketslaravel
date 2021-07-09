@@ -10003,6 +10003,7 @@ h3 {
   }
 }
 
+
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */
@@ -10052,3 +10053,4 @@ h3 {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+

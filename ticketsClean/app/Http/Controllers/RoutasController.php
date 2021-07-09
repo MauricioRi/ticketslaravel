@@ -128,7 +128,7 @@ class RoutasController extends Controller
         $route = Geocerca::paginate();
         Log::debug($route);
 
-    }
+
 
 
         public function index(){

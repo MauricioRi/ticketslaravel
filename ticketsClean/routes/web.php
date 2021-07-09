@@ -54,3 +54,11 @@ Route::post('/geocerca', [GeocercasController::class, 'crear'])->name('geocercas
 Route::delete('/geocerca/{id}', [GeocercasController::class, 'eliminar'])->name('geocercas.delete');
 Route::post('/geocerca/{id}', [GeocercasController::class, 'actualizar'])->name('geocercas.update');
 Route::get('listarGeocercas', [GeocercasController::class, 'listar']);
+
+
+Route::get('/rutas', [RutasController::class, 'listar'])->name("listar_Rutas");
+Route::get('/rutas_crear', [RutasController::class, 'crear'])->name("crear_Rutas");
+Route::get('/rutas_editar/{idruta}', [RutasController::class, 'editar'])->name("editar_Rutas");
+
+Route::post("cursos", [RutasController::class, "store"])->name("rutas.store");
+Route::put("rutas_update/{route}", [RutasController::class, "update"])->name("rutas_update");
