@@ -50,6 +50,15 @@ class MisUsuariosController extends Controller
         return redirect()->route('misusuarios.list');
     }
 
+    public function eliminar(Request $request, $id)
+    {
+        
+        Log::debug(User::where([['id', '=', $id], ['empresa', '=', Auth::user()->empresa]])->get()[0]);
+        $geocerca = User::where([['id', '=', $id], ['empresa', '=', Auth::user()->empresa]])->get()[0];
+        $geocerca->delete();
+        return 'ok';
+    }
+
     public function actualizar(Request $request, $id)
     {
         Log::debug($id);
@@ -72,5 +81,12 @@ class MisUsuariosController extends Controller
 
 
         return view('misusuarios')->with(array('users' => $data));
+    }
+
+    public function listar()
+    {
+        $data = User::where([['id', '!=', Auth::user()->id], ['tipo', '=', 2], ['empresa', '=', Auth::user()->empresa]])->get();
+
+        return $data;
     }
 }

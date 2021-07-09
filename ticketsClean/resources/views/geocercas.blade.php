@@ -11,7 +11,7 @@
                 <div class="container">
                     <a href="{{ URL::route('geocercas.edit') }}" class="btn btn-outline-primary">Crear geocerca</a>
 
-                    <table id="table" data-height="460">
+                    <table id="table" data-height="460" class="table table-striped table-blue" data-show-columns="true">
                         <thead>
                             <tr>
                                 <th data-field="id">ID</th>
@@ -21,7 +21,7 @@
                         </thead>
                     </table>
 
-                    <table id="bs-table" class="table table-striped table-blue" data-show-columns="true">
+                    
                     </table>
 
                 </div>

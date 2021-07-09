@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empresa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
@@ -50,6 +51,18 @@ class UsuariosController extends Controller
         return redirect()->route('usuarios.list');
     }
 
+    public function eliminar(Request $request, $id)
+    {
+        if(Auth::user()->tipo > 0){
+            abort(401);
+            return 'unauthorized';
+        }
+        Log::debug(User::where([['id', '=', $id]])->get()[0]);
+        $geocerca = User::where([['id', '=', $id]])->get()[0];
+        $geocerca->delete();
+        return 'ok';
+    }
+
     public function actualizar(Request $request, $id)
     {
         Log::debug($id);
@@ -72,5 +85,12 @@ class UsuariosController extends Controller
  
 
         return view('usuarios')->with(array('users' => $data));
+    }
+
+    public function listar()
+    {
+        $data = User::all();
+
+        return $data;
     }
 }

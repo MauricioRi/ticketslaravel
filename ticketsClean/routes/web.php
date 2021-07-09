@@ -30,13 +30,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Custom
 Route::get('/usuario/{id?}', [UsuariosController::class, 'editar'])->name('usuarios.edit');
 Route::get('/usuarios', [UsuariosController::class, 'cargar'])->name('usuarios.list');
+Route::get('listarUsuarios', [UsuariosController::class, 'listar'])->name('usuarios.get');
 Route::post('/usuario', [UsuariosController::class, 'crear'])->name('usuarios.create');
 Route::post('/usuario/{id}', [UsuariosController::class, 'actualizar'])->name('usuarios.update');
+Route::delete('/usuario/{id}', [UsuariosController::class, 'eliminar'])->name('usuarios.delete');
 
 Route::get('/miusuario/{id?}', [MisUsuariosController::class, 'editar'])->name('misusuarios.edit');
 Route::get('/misusuarios', [MisUsuariosController::class, 'cargar'])->name('misusuarios.list');
+Route::get('listarMisUsuarios', [MisUsuariosController::class, 'listar'])->name('misusuarios.get');
 Route::post('/miusuario', [MisUsuariosController::class, 'crear'])->name('misusuarios.create');
 Route::post('/miusuario/{id}', [MisUsuariosController::class, 'actualizar'])->name('misusuarios.update');
+Route::delete('/miusuario/{id}', [MisUsuariosController::class, 'eliminar'])->name('misusuarios.delete');
 
 
 Route::get('/empresa/{id?}', [EmpresasController::class, 'editar'])->name('empresas.edit');
