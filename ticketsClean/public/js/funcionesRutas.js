@@ -14,38 +14,24 @@ var matriz = "";
 
 $(document).on("click", ".STATUS", (e) => {
     
-    $.post('geocerca', {
+    // $.post('geocerca', {
 
-        "datos": array,
-        "name": name
-    }, function (data) {
-        console.log(data);
-    });
+    //     "datos": array,
+    //     "name": name
+    // }, function (data) {
+    //     console.log(data);
+    // });
 
-    Swal.fire({
-        title: `Se guardo la geocerca ${name}`,
-        icon: 'success'
-    })
+    // Swal.fire({
+    //     title: `Se guardo la geocerca ${name}`,
+    //     icon: 'success'
+    // })
     var tabla = document.getElementById('Tablebody')
     var x = document.getElementById("Tablebody").rows.length;
-    
-    var gato = "";
-    var count = Object.keys(data).length;
-    //console.log(count);
-    //console.log(matriz);
-    //Bucle que recorre el primer array
-    // for (var i = 0; i < arraypuntos.length; i++) {
-    //     //Bucle que recorre el array que está en la posición i
-    //     for (var j = 0; j < arraypuntos[i].length; j++) {
-    //         gato += arraypuntos[i][j];
-    //     }
-    //     gato += "\n";
-    // }
-    // console.log(gato);
-
-
-
-    //  appendColumn();
+       console.log(x);
+       if(x>0){
+      
+    }
 });
 
 
@@ -74,7 +60,7 @@ $(document).on("click", ".buttoninsert", (e) => {
 
 
             var count = Object.keys(data).length;
-
+            document.getElementById("buttoncreate").disabled = false;
             genera_tabla(count);
         }
     
@@ -150,6 +136,33 @@ function genera_tabla(puntos) {
     tabla.innerHTML = matriz;
 
 }
+let arrayd = [];
+
+const form = document.getElementsByClassName('form');
+
+form.addEventListener('focusin', (event) => {
+  event.target.style.background = 'pink';
+});
+
+form.addEventListener('focusout', (event) => {
+  event.target.style.background = '';
+
+
+});
+
+$(".class").focusout(() => {
+    $(this).data("");//id o
+
+    arrayd.push(
+        {
+            "costo": 55,
+            "idGO": 1,
+            "idGD": 2
+        }
+    );
+
+    $("#campoSecreto").val = JSON.stringify(arrayd);
+})
 
 
 

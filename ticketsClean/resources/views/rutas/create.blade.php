@@ -36,7 +36,7 @@
   @endforeach
 </select>
  <button type="button" class="buttoninsert" >Añadir Punto</button>
- <button type="button" class="STATUS" >CHECK</button>
+ {{-- <button type="button" class="STATUS" >CHECK</button> --}}
       <br><br><br>
       
       <div  class="table points">
@@ -48,14 +48,17 @@
               
                 </tr>
               </thead>
-              <tbody id="Tablebody">                 </tbody>
+              <tbody id="Tablebody">       
+                          </tbody>
                  </table>
 
      
        
 
       </div>
-      <button type="submit">crear ruta</button>
+      <button disabled type="submit" id="buttoncreate">crear ruta</button>
+
+      
     </form>
     
 </div>
