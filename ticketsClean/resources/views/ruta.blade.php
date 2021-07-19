@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<script src="{{ asset('js/funcionesRutas.js') }}"></script>
     <div class="wrapper">
 
         <div class="main-panel">

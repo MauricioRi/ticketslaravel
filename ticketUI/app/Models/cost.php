@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class routes extends Model
+class cost extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = "routes";
+    protected $table = "table_cost";
     protected $primaryKey = 'id';
-    protected $fillable = ['id ', 'Name_route', 'description', 'number_points'];
+    protected $fillable = ['id ', 'id_routes', 'id_origin', 'id_destination', 'amount'];
 }

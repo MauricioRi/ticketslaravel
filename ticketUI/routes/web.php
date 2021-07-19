@@ -21,6 +21,7 @@ use App\Http\Controllers\RutasController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::namespace('App\Http\Controllers')->group(function () {
     Auth::routes();
 });
@@ -35,6 +36,11 @@ Auth::routes();
 Route::get('/rutas', [RutasController::class, 'listar'])->name("listar_Rutas");
 Route::get('/rutas_crear', [RutasController::class, 'crear'])->name("crear_Rutas");
 Route::get('/rutas_editar/{idruta}', [RutasController::class, 'editar'])->name("editar_Rutas");
+Route::get('/cost_routes/{idroute}', [RutasController::class, 'costRoute'])->name("cost");
+Route::get('/show_route_cost/{idroute}', [RutasController::class, 'showRouteCost'])->name("showCostRoute");
+Route::get("/getFilterPoints/{idpoint}", [RutasController::class, "getPointsFilter"])->name("get_points_filter");
+Route::get("/getCostPoints/{idorigen}/{iddestino}", [RutasController::class, 'getCostPoints'])->name("costRoute");
+Route::post('/saveCostPoint', [RutasController::class, 'saveCostPoint'])->name("guardarCosto");
 
 Route::post("cursos", [RutasController::class, "store"])->name("rutas.store");
 Route::put("rutas_update/{route}", [RutasController::class, "update"])->name("rutas_update");
