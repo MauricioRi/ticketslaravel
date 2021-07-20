@@ -11,5 +11,5 @@ class routes extends Model
     public $timestamps = false;
     protected $table = "routes";
     protected $primaryKey = 'id';
-    protected $fillable = ['id ', 'Name_route', 'description', 'number_points'];
+    protected $fillable = ['id ', 'Name_route', 'description'];
 }

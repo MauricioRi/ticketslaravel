@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\routes;
+use App\Models\Geocerca;
 use Hamcrest\Description;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class RutasController extends Controller
@@ -37,8 +40,8 @@ class RutasController extends Controller
     //  compact("route"); es igual a ["ruta"=>$ruta]
     // return  view('login.login',compact("ruta"));
     $route = routes::paginate();
-    echo $route; 
-    echo "123";
+    // echo $route; 
+    // echo "123";
         Log::debug($route);
     return  view('ruta', ["ruta" => $route]);
 
@@ -59,9 +62,12 @@ class RutasController extends Controller
     // $route = routes::paginate();
     // Log::debug($route);
     // return  view('ruta', ["ruta" => $route]);
-
-
-    return  view('rutas.create', ["idCompany" => 5]);
+    $data = Geocerca::where([['empresa', '=', Auth::user()->empresa]])->get();
+    Log::debug($data);
+    return  view('rutas.create', ["geocercas" => $data]);
+   
+    // return  view('rutas.create', ["idCompany" => 5]);
+   // return  view('rutas.create', ["idCompany" => 5]);
 
 
     // $rutas=$route;
@@ -87,12 +93,12 @@ class RutasController extends Controller
     $request->validate([
       'name' => 'required',
       'description' => 'required',
-      'numberpoints' => 'required|numeric'
+      
     ]);
     $route->id = null;
     $route->Name_route = $request->name;
     $route->description = $request->description;
-    $route->number_points = $request->numberpoints;
+   
 
     $route->save();
     return  redirect()->route("listar_Rutas");

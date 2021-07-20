@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Geocerca;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+
 class RoutasController extends Controller
 {
     /**
@@ -124,37 +125,40 @@ class RoutasController extends Controller
     }
 
 
-    public function cargar(){
+    public function cargar()
+    {
         $route = Geocerca::paginate();
         Log::debug($route);
-
     }
 
 
-        public function index(){
 
-            // Load index view
-            return view('index');
-          }
-       
-          // Fetch records
-          public function getEmployees(Request $request){
-             $search = $request->search;
-       
-             if($search == ''){
-                $employees = Employees::orderby('name','asc')->select('id','name')->limit(5)->get();
-             }else{
-                $employees = Employees::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->limit(5)->get();
-             }
-       
-             $response = array();
-             foreach($employees as $employee){
-                $response[] = array(
-                     "id"=>$employee->id,
-                     "text"=>$employee->name
-                );
-             }
-             return response()->json($response); 
-          } 
+
+    // public function index(){
+
+    //     // Load index view
+    //     return view('index');
+    //   }
+
+    // Fetch records
+    public function getEmployees(Request $request)
+    {
+        // $search = $request->search;
+
+        // if ($search == '') {
+        //     $employees = Employees::orderby('name', 'asc')->select('id', 'name')->limit(5)->get();
+        // } else {
+        //     $employees = Employees::orderby('name', 'asc')->select('id', 'name')->where('name', 'like', '%' . $search . '%')->limit(5)->get();
+        // }
+
+        // $response = array();
+        // foreach ($employees as $employee) {
+        //     $response[] = array(
+        //         "id" => $employee->id,
+        //         "text" => $employee->name
+        //     );
+        // }
+        // return response()->json($response);
     }
+    // }
 }

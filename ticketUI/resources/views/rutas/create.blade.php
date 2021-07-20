@@ -63,23 +63,7 @@
                
 
             </tr>
-            {{-- @foreach ($ruta as $rutas)
-                <tr>
-                    <td>{{ $rutas->id }}</td>
-                    <td> {{ $rutas->Name_route }}</td>
-                    <td>{{ $rutas->description }}</td>
-                    
-
-                    <td><a href="{{ route('editar_Rutas', $rutas->id) }}}">Editar_Costos</a><br><a href="{{ route('editar_Rutas', $rutas->id) }}}">Editar_Puntos</a></td>
-                    
-
-
-
-
-                </tr>
-
-            @endforeach --}}
-
+          
         </table>
 
 
@@ -93,7 +77,7 @@
 
 
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).on("click", ".buttoninsert", (e) => {
     //  $("#buttoninsert").click(function(){
         console.log(entro);
@@ -105,7 +89,7 @@
     itemArray.name = "albert";
     itemObject.push(itemArray);
     
-    </script>
+    </script> --}}
 
 @endsection
 
