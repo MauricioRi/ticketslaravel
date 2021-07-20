@@ -102,7 +102,8 @@ function genera_tabla(puntos) {
                 matriz += "<td>" + `<input disabled type="text" id="` + x + "," + y + `" name="` + x + "," + y + `" value="` + data[x - 1].namegoefence + `"></td>`;
             }
             if (x == y && x > 0 && y > 0) {
-                matriz += "<td>" + `<input required type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value={{old(`+x + "," + y +`)}}""></td>`;
+                // {{old(`+x + "," + y +`)}}
+                matriz += "<td>" + `<input required type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value="" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
             }
             if (y > x & x > 0 && y > 0) {
                 //este la estaba cagando
@@ -116,7 +117,8 @@ function genera_tabla(puntos) {
                 matriz += "<td>" + `<input disabled type="text" id="` + x + "," + y + `" name="` + x + "," + y + `" value="` + "NO DISPONIBLE" + `"></td>`;
             }
             if (y > x & x > 0 && y > 0) {
-                matriz += "<td>" + `<input required type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value={{old(`+x + "," + y +`)}}""></td>`;
+                // {{old(`+x + "," + y +`)}
+                matriz += "<td>" + `<input required type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value="" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
             }
         }
 
@@ -138,31 +140,31 @@ function genera_tabla(puntos) {
 }
 let arrayd = [];
 
-const form = document.getElementsByClassName('form');
+// const form = document.getElementsByClassName('form');
 
-form.addEventListener('focusin', (event) => {
-  event.target.style.background = 'pink';
-});
+// form.addEventListener('focusin', (event) => {
+//   event.target.style.background = 'pink';
+// });
 
-form.addEventListener('focusout', (event) => {
-  event.target.style.background = '';
+// form.addEventListener('focusout', (event) => {
+//   event.target.style.background = '';
 
 
-});
+// });
 
-$(".class").focusout(() => {
-    $(this).data("");//id o
+// $(".class").focusout(() => {
+//     $(this).data("");//id o
 
-    arrayd.push(
-        {
-            "costo": 55,
-            "idGO": 1,
-            "idGD": 2
-        }
-    );
+//     arrayd.push(
+//         {
+//             "costo": 55,
+//             "idGO": 1,
+//             "idGD": 2
+//         }
+//     );
 
-    $("#campoSecreto").val = JSON.stringify(arrayd);
-})
+//     $("#campoSecreto").val = JSON.stringify(arrayd);
+// })
 
 
 
