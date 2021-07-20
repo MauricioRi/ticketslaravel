@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class EmpresasController extends Controller
@@ -49,5 +50,16 @@ class EmpresasController extends Controller
         Log::debug($data);
 
         return view('empresas')->with(array('companies' => $data));
+    }
+
+    public function listar()
+    {
+        if(Auth::user()->tipo==0){
+            $data = Empresa::all();
+            return $data;
+        }
+        
+        return [];
+        
     }
 }

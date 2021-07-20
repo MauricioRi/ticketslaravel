@@ -45,6 +45,7 @@ Route::delete('/miusuario/{id}', [MisUsuariosController::class, 'eliminar'])->na
 
 Route::get('/empresa/{id?}', [EmpresasController::class, 'editar'])->name('empresas.edit');
 Route::get('/empresas', [EmpresasController::class, 'cargar'])->name('empresas.list');
+Route::get('listarEmpresas', [EmpresasController::class, 'listar'])->name('empresas.get');
 Route::post('/empresa', [EmpresasController::class, 'crear'])->name('empresas.create');
 Route::post('/empresa/{id}', [EmpresasController::class, 'actualizar'])->name('empresas.update');
 

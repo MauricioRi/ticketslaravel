@@ -33,7 +33,7 @@
 
                 <div class="mb-3">
                     <label for="empresa" class="form-label">Empresa</label><br>
-                    <select name="empresa" id="empresa"></select>
+                    <select class="form-control" name="empresa" id="empresa"></select>
 
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>

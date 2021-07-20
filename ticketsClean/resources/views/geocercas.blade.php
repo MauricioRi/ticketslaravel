@@ -12,16 +12,7 @@
                     <a href="{{ URL::route('geocercas.edit') }}" class="btn btn-outline-primary">Crear geocerca</a>
 
                     <table id="table" data-height="460" class="table table-striped table-blue" data-show-columns="true">
-                        <thead>
-                            <tr>
-                                <th data-field="id">ID</th>
-                                <th data-field="nombre">Nombre</th>
-
-                            </tr>
-                        </thead>
-                    </table>
-
-                    
+                        
                     </table>
 
                 </div>
@@ -31,6 +22,8 @@
     </div>
 
     <script>
+        
+
         const TABLE = document.querySelector("table")
         const TABLE_ID = TABLE.getAttribute("id")
         const table = $(`#${TABLE_ID}`)
