@@ -5,6 +5,7 @@ $(document).ready(function () { });
 var arraypuntos = [];
 var feed = {}, data = [];
 let cont = 0;
+var costos =[];
 // var columm = 0;
 // var fila = 0;
 var matriz = "";
@@ -103,8 +104,17 @@ function genera_tabla(puntos) {
             }
             if (x == y && x > 0 && y > 0) {
                 // {{old(`+x + "," + y +`)}}
-                matriz += "<td>" + `<input required type="number" class="matcost" id="` + x + "," + y + `" name="` + x + "," + y + `"value="" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
+                const resultado = costos.find(busqueda => busqueda.origen == data[x -1].id && busqueda.destino == data[y-1].id);
+                const posicion = costos.findIndex(busqueda => busqueda.origen == data[x -1].id && busqueda.destino == data[y-1].id);
+                console.log(resultado);
+                if (typeof resultado != "undefined") {
+                matriz += "<td>" + `<input required type="number" class="matcost" id="` + x + "," + y + `" name="` + x + "," + y + `"value= "`+costos[posicion].costo+`" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
             }
+            else
+            matriz += "<td>" + `<input required type="number" class="matcost" id="` + x + "," + y + `" name="` + x + "," + y + `"value= "" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
+            
+
+        }
             if (y > x & x > 0 && y > 0) {
                 //este la estaba cagando
                 // arraypuntos[x][y]="{"+x+","+y+"}";
@@ -118,7 +128,16 @@ function genera_tabla(puntos) {
             }
             if (y > x & x > 0 && y > 0) {
                 // {{old(`+x + "," + y +`)}
+                const resultado = costos.find(busqueda => busqueda.origen == data[x -1].id && busqueda.destino == data[y-1].id);
+                const posicion = costos.findIndex(busqueda => busqueda.origen == data[x -1].id && busqueda.destino == data[y-1].id);
+                if (typeof resultado != "undefined") {
+                    matriz += "<td>" + `<input required class="matcost" type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value="`+costos[posicion].costo+`" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
+                    console.log(resultado);
+                }
+
+                else
                 matriz += "<td>" + `<input required class="matcost" type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value="" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
+                
             }
         }
 
@@ -191,15 +210,53 @@ let arrayd = [];
 
 $(document).on("blur", ".matcost", (e) => {
    // window.console.log(this.id, e);
-   console.log($(this).target);
-    e.thi
+  // console.log(e);
+   
+   const valor=e.target.value;
+   const origen=e.target.getAttribute("data-origen");
+   const destino=e.target.getAttribute("data-destino");
+
+
+   if(valor!=""){
+    const resultado = costos.find(data => data.origen == origen && data.destino == destino);
+    const posicion = costos.findIndex(data => data.origen == origen && data.destino == destino);
+    // console.log(resultado);
+    if (typeof resultado === "undefined") {
+        costos.push(
+                    {
+                        "costo": valor,
+                        "origen": origen,
+                        "destino": destino
+                    }
+            );
+           console.log(JSON.stringify(costos)); 
+
+    }
+    else{
+       
+       
+        costos[posicion].costo=valor;
+        costos[posicion].origen=origen;
+        costos[posicion].destino=destino;
+        console.log(costos[posicion]);
+
+    }
+    var campoSecreto = document.getElementsByName('secretcamp')
+// campoSecreto
+// $("#campoSecreto").val = JSON.stringify(arrayd);
+campoSecreto.value = JSON.stringify(costos);
+console.log(campoSecreto.value);
+   }
+//    origen =e.target.attr("data-origen");
+//    destino =e.target.attr("data-destino");
+
+//    console.log(origen);
+//    console.log(destino);
 // console.log(e);
     const element = $(this)[0].activeElement;
-    const balu = $("#txt_name").val();
    
     //const idimg = $(element).attr("data-path");
-    const idpartner = $(element).attr("data-origen");
-    console.log(idpartner);
+  
     // const element = $(this)[0].activeElement;
     //     const idegresingr = $(element).attr("data-pay");
     //     const dataimport = $(element).attr("data-import");
