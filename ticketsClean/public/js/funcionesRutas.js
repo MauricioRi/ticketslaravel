@@ -103,7 +103,7 @@ function genera_tabla(puntos) {
             }
             if (x == y && x > 0 && y > 0) {
                 // {{old(`+x + "," + y +`)}}
-                matriz += "<td>" + `<input required type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value="" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
+                matriz += "<td>" + `<input required type="number" class="matcost" id="` + x + "," + y + `" name="` + x + "," + y + `"value="" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
             }
             if (y > x & x > 0 && y > 0) {
                 //este la estaba cagando
@@ -118,7 +118,7 @@ function genera_tabla(puntos) {
             }
             if (y > x & x > 0 && y > 0) {
                 // {{old(`+x + "," + y +`)}
-                matriz += "<td>" + `<input required type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value="" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
+                matriz += "<td>" + `<input required class="matcost" type="number" id="` + x + "," + y + `" name="` + x + "," + y + `"value="" data-origen ="`+data[x -1].id+`" data-destino="`+data[y-1].id+`"></td>`;
             }
         }
 
@@ -152,8 +152,18 @@ let arrayd = [];
 
 // });
 
-// $(".class").focusout(() => {
-//     $(this).data("");//id o
+
+
+// $(".matcost").focusout(() => {
+//     var ori=$(this).data("origen");
+//     var dest=$(this).data("destino");
+//   console.log(ori,dest);
+
+
+
+
+  
+    //id o
 
 //     arrayd.push(
 //         {
@@ -165,6 +175,36 @@ let arrayd = [];
 
 //     $("#campoSecreto").val = JSON.stringify(arrayd);
 // })
+// var tabla = document.getElementById('Tablebody')
+// let input = document.querySelector('input');
 
+// input.onblur = inputBlur;
+// input.onfocus = inputFocus;
 
+// function inputBlur() {
+//   input.value = 'Focus has been lost';
+// }
 
+// function inputFocus() {
+//   input.value = 'Focus is here';
+// }
+
+$(document).on("blur", ".matcost", (e) => {
+   // window.console.log(this.id, e);
+   console.log($(this).target);
+    e.thi
+// console.log(e);
+    const element = $(this)[0].activeElement;
+    const balu = $("#txt_name").val();
+   
+    //const idimg = $(element).attr("data-path");
+    const idpartner = $(element).attr("data-origen");
+    console.log(idpartner);
+    // const element = $(this)[0].activeElement;
+    //     const idegresingr = $(element).attr("data-pay");
+    //     const dataimport = $(element).attr("data-import");
+});
+
+// $("input").onblur(function(){
+//     alert(this.value);
+// });
