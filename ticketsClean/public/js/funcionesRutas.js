@@ -241,27 +241,14 @@ $(document).on("blur", ".matcost", (e) => {
         console.log(costos[posicion]);
 
     }
-    var campoSecreto = document.getElementsByName('secretcamp')
+    var campoSecreto = document.getElementById("secretcamp");
 // campoSecreto
 // $("#campoSecreto").val = JSON.stringify(arrayd);
 campoSecreto.value = JSON.stringify(costos);
 console.log(campoSecreto.value);
    }
-//    origen =e.target.attr("data-origen");
-//    destino =e.target.attr("data-destino");
 
-//    console.log(origen);
-//    console.log(destino);
-// console.log(e);
-    const element = $(this)[0].activeElement;
-   
-    //const idimg = $(element).attr("data-path");
-  
-    // const element = $(this)[0].activeElement;
-    //     const idegresingr = $(element).attr("data-pay");
-    //     const dataimport = $(element).attr("data-import");
 });
 
-// $("input").onblur(function(){
-//     alert(this.value);
-// });
+
+

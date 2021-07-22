@@ -88,7 +88,7 @@ class RutasController extends Controller
 
     $route = new routes();
 
-
+ Log::debug($request);
 
     $request->validate([
       'name' => 'required',
@@ -98,9 +98,16 @@ class RutasController extends Controller
     $route->id = null;
     $route->Name_route = $request->name;
     $route->description = $request->description;
-   
+   $algo= $request->secretcamp;
+   $rooms = json_decode($algo, true);
 
-    $route->save();
+ddd($rooms);
+
+// foreach($rooms as $name => $data) {
+//     var_dump($name, $data['calID'], $data['availMsg']); // $name is the Name of Room
+// }
+
+    // $route->save();
     return  redirect()->route("listar_Rutas");
   }
   public function editar($idruta)
