@@ -89,16 +89,18 @@ class RutasController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'numberpoints' => 'required|numeric'
+            'description' => 'required'
         ]);
+
+
+        
         $route->id = null;
         $route->Name_route = $request->name;
         $route->description = $request->description;
         $route->number_points = $request->numberpoints;
-
-        $route->save();
-        return  redirect()->route("listar_Rutas");
+        
+        // $route->save();
+        // return  redirect()->route("listar_Rutas");
     }
     public function editar($idruta)
     {

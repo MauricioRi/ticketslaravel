@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\routes;
 use App\Models\Geocerca;
 use Hamcrest\Description;
+use App\Models\cost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -81,11 +82,7 @@ class RutasController extends Controller
   public function store(Request $request)
   {
 
-    // $curso->Name_route="Maravatio por charo";
-    // $curso->idroutes=null;
-    // $curso->description="Maravatio por charo es sin casetas";
-    // $curso->save();
-
+   
     $route = new routes();
 
  Log::debug($request);
@@ -98,16 +95,39 @@ class RutasController extends Controller
     $route->id = null;
     $route->Name_route = $request->name;
     $route->description = $request->description;
+  $route->save();
+
+    
+
    $algo= $request->secretcamp;
    $rooms = json_decode($algo, true);
+//    ddd($rooms);
+// ddd($rooms);
 
-ddd($rooms);
+foreach($rooms as $name => $data) {
+  $cost = new cost();
 
-// foreach($rooms as $name => $data) {
-//     var_dump($name, $data['calID'], $data['availMsg']); // $name is the Name of Room
-// }
+  $cost->id_routes = $route->id;
+  $cost->id_origin = $data["origen"];
+  $cost->id_destination = $data["destino"];
+  $cost->amount = $data["costo"];
+  $insert = $cost->save();
 
-    // $route->save();
+  // if ($insert) {
+
+  //     // return response()->json([
+  //     //     "status" => true,
+  //     //     "message" => "Se ha generado el costo con éxito"
+  //     // ]);
+  // } else {
+  //     // return response()->json([
+  //     //     "status" => false,
+  //     //     "message" => "Se ha producido un error al generar el costo"
+  //     // ]);
+  // }
+}
+
+   
     return  redirect()->route("listar_Rutas");
   }
   public function editar($idruta)
