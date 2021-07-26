@@ -241,12 +241,18 @@ $(document).on("blur", ".matcost", (e) => {
         console.log(costos[posicion]);
 
     }
-    var campoSecreto = document.getElementById("secretcamp");
-// campoSecreto
-// $("#campoSecreto").val = JSON.stringify(arrayd);
+var campoSecreto = document.getElementById("secretcamp");
+
 campoSecreto.value = JSON.stringify(costos);
-console.log(campoSecreto.value);
-   }
+//console.log(campoSecreto.value);
+
+
+var listpoints = document.getElementById("listpoints");
+
+listpoints.value = JSON.stringify(data);
+console.log(listpoints.value);
+
+}
 
 });
 

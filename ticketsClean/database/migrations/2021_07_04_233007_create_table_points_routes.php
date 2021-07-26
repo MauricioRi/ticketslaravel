@@ -20,7 +20,7 @@ class CreateTablePointsRoutes extends Migration
             $table->integer('id_empresa');
             $table->integer('id_geofence');
             $table->timestamp('created_at')->nullable();
-            $table->timestamp('modification_date')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->integer('user_create')->nullable();
             $table->integer('user_update')->nullable();
         });

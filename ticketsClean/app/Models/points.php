@@ -11,5 +11,5 @@ class points extends Model
     public $timestamps = true;
     protected $table = "points_routes";
     protected $primaryKey = 'id';
-    protected $fillable = ['id ', 'id_consecutivo', 'id_routes', 'id_empresa', 'created_at', 'modification_date', 'user_create', 'user_update'];
+    protected $fillable = ['id ', 'id_consecutivo', 'id_routes', 'id_empresa','id_geofence', 'created_at', 'modification_date', 'user_create', 'user_update'];
 }

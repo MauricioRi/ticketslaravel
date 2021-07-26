@@ -1,6 +1,6 @@
 
 
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Editar Ruta')
     
@@ -25,13 +25,7 @@
             <small>*{{$message}}</small>
             <br>
         @enderror
-        numero de puntos :
-        <label for=""><input type="number" value="{{old('numberpoints',$ruta->number_points)}}" name="numberpoints"></label><br>
-        @error('numberpoints')
-            <br>
-            <small>*{{$message}}</small>
-            <br>
-        @enderror
+       
 
         <button type="submit">Actualizar ruta</button>
      </form> 

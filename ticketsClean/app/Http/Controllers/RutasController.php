@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\routes;
 use App\Models\Geocerca;
+use App\Models\points;
 use Hamcrest\Description;
 use App\Models\cost;
 use Illuminate\Http\Request;
@@ -67,17 +68,6 @@ class RutasController extends Controller
     Log::debug($data);
     return  view('rutas.create', ["geocercas" => $data]);
    
-    // return  view('rutas.create', ["idCompany" => 5]);
-   // return  view('rutas.create', ["idCompany" => 5]);
-
-
-    // $rutas=$route;
-    // // echo $rutas;
-    // return $rutas;
-
-
-
-    //return 'login';
   }
   public function store(Request $request)
   {
@@ -96,17 +86,10 @@ class RutasController extends Controller
     $route->Name_route = $request->name;
     $route->description = $request->description;
   $route->save();
-
-    
-
-   $algo= $request->secretcamp;
+ $algo= $request->secretcamp;
    $rooms = json_decode($algo, true);
-//    ddd($rooms);
-// ddd($rooms);
-
 foreach($rooms as $name => $data) {
   $cost = new cost();
-
   $cost->id_routes = $route->id;
   $cost->id_origin = $data["origen"];
   $cost->id_destination = $data["destino"];
@@ -126,9 +109,25 @@ foreach($rooms as $name => $data) {
   //     // ]);
   // }
 }
+$listpoin= $request->listpoints;
+$listcost = json_decode($listpoin, true);
+
+// ddd($listcost);
+foreach($listcost as $name => $data) {
+$POINTS = new points();
+
+$POINTS->id_routes = $route->id;
+$POINTS->id_consecutivo = $data["consecutive"];
+$POINTS->id_geofence = $data["id"];
+$POINTS->id_empresa =1;
+$insertpoint = $POINTS->save();
+}
+
+
+
 
    
-    return  redirect()->route("listar_Rutas");
+   return  redirect()->route("listar_Rutas");
   }
   public function editar($idruta)
   {

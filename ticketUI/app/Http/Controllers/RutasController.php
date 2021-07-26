@@ -93,12 +93,12 @@ class RutasController extends Controller
         ]);
 
 
-        
+
         $route->id = null;
         $route->Name_route = $request->name;
         $route->description = $request->description;
         $route->number_points = $request->numberpoints;
-        
+
         // $route->save();
         // return  redirect()->route("listar_Rutas");
     }
