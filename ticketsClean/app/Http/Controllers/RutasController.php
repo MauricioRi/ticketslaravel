@@ -158,7 +158,7 @@ $insertpoint = $POINTS->save();
 
 
 
-    // ddd($pointroutes,$route);
+     ddd($pointroutes,$route);
     return  view('rutas.edit', ["ruta" => $route , "puntos"=>$pointroutes]);
   }
 
