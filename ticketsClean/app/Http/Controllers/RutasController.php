@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\points;
 use App\Models\routes;
 use App\Models\Geocerca;
-use App\Models\points;
+
 use Hamcrest\Description;
 use App\Models\cost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use LengthException;
 
 class RutasController extends Controller
 {
@@ -113,8 +114,9 @@ $listpoin= $request->listpoints;
 $listcost = json_decode($listpoin, true);
 
 // ddd($listcost);
-foreach($listcost as $name => $data) {
 $POINTS = new points();
+foreach($listcost as $name => $data) {
+
 
 $POINTS->id_routes = $route->id;
 $POINTS->id_consecutivo = $data["consecutive"];
@@ -132,9 +134,32 @@ $insertpoint = $POINTS->save();
   public function editar($idruta)
   {
 
-    $route = routes::find($idruta);
+    // $route = routes::find($idruta);
 
-    return  view('rutas.edit', ["ruta" => $route]);
+     //Obtenemos todos los puntos consecutivos
+     $route = DB::table("points_routes as pr")
+     ->join("routes as rt", "rt.id", "=", "pr.id_routes")
+    
+     ->where(["rt.id" =>$idruta])
+     ->orderBy("pr.id_consecutivo", "asc")
+    //  ->whereRaw("pr.id_consecutivo >= " . $idConsecutivo->id_consecutivo)
+    ->select('rt.Name_route','rt.description' ,'pr.id_consecutivo','pr.id_empresa','pr.id_geofence')
+     ->get();
+     $pointroutes = DB::table("table_cost as tc")
+     ->join("routes as rt", "rt.id", "=", "tc.id_routes")
+    
+     ->where(["rt.id" =>$idruta])
+     ->orderBy("tc.id", "asc")
+    //  ->whereRaw("pr.id_consecutivo >= " . $idConsecutivo->id_consecutivo)
+    ->select('tc.id_origin','tc.id_destination' ,'tc.amount','tc.id_routes')
+     ->get();
+    
+
+
+
+
+    // ddd($pointroutes,$route);
+    return  view('rutas.edit', ["ruta" => $route , "puntos"=>$pointroutes]);
   }
 
   public function update(Request $request, $route)
