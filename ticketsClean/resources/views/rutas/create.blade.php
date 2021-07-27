@@ -68,7 +68,7 @@
 
 
 
-<script src="{{ asset('js/funcionesRutas.js') }}" defer></script>
+<script src="{{ asset('js/funcionesInsertarRutas.js') }}" defer></script>
 @endsection
 
 

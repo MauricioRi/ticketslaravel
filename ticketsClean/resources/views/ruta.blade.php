@@ -25,7 +25,7 @@
                         <td>{{ $rutas->description }}</td>
                         {{-- <td>{{ $rutas->number_points }}</td> --}}
 
-                        <td><a href="{{ route('editar_Rutas', $rutas->id) }}}">Editar_Costos</a><br><a href="{{ route('editar_Rutas', $rutas->id) }}}">Eliminar ruta</a></td>
+                        <td><a href="{{ route('editar_Rutas', $rutas->id) }}">Editar_Costos</a><br><a href="{{ route('editar_Rutas', $rutas->id) }}">Eliminar ruta</a></td>
                         
 
 

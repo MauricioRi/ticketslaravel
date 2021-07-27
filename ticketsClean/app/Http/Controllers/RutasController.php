@@ -89,6 +89,7 @@ class RutasController extends Controller
   $route->save();
  $algo= $request->secretcamp;
    $rooms = json_decode($algo, true);
+   
 foreach($rooms as $name => $data) {
   $cost = new cost();
   $cost->id_routes = $route->id;
@@ -113,10 +114,10 @@ foreach($rooms as $name => $data) {
 $listpoin= $request->listpoints;
 $listcost = json_decode($listpoin, true);
 
-// ddd($listcost);
-$POINTS = new points();
-foreach($listcost as $name => $data) {
+//  ddd($listcost);
 
+foreach($listcost as $name => $data) {
+  $POINTS = new points();
 
 $POINTS->id_routes = $route->id;
 $POINTS->id_consecutivo = $data["consecutive"];
@@ -139,27 +140,32 @@ $insertpoint = $POINTS->save();
      //Obtenemos todos los puntos consecutivos
      $route = DB::table("points_routes as pr")
      ->join("routes as rt", "rt.id", "=", "pr.id_routes")
+     ->join("geocercas as gc", "gc.id", "=", "pr.id_geofence")
     
-     ->where(["rt.id" =>$idruta])
+     ->where(["pr.id_routes"=>$idruta])
      ->orderBy("pr.id_consecutivo", "asc")
     //  ->whereRaw("pr.id_consecutivo >= " . $idConsecutivo->id_consecutivo)
-    ->select('rt.Name_route','rt.description' ,'pr.id_consecutivo','pr.id_empresa','pr.id_geofence')
+    ->select('rt.Name_route','rt.description' ,'pr.id_consecutivo as consecutive','pr.id_empresa','pr.id_geofence as id','gc.nombre as namegoefence')
      ->get();
+
+
+
+
      $pointroutes = DB::table("table_cost as tc")
      ->join("routes as rt", "rt.id", "=", "tc.id_routes")
     
      ->where(["rt.id" =>$idruta])
      ->orderBy("tc.id", "asc")
     //  ->whereRaw("pr.id_consecutivo >= " . $idConsecutivo->id_consecutivo)
-    ->select('tc.id_origin','tc.id_destination' ,'tc.amount','tc.id_routes')
+    ->select('tc.id_origin as origen','tc.id_destination as destino' ,'tc.amount as costo','tc.id_routes')
      ->get();
     
 
 
 
 
-     ddd($pointroutes,$route);
-    return  view('rutas.edit', ["ruta" => $route , "puntos"=>$pointroutes]);
+     //ddd($route,$pointroutes);
+    return  view('rutas.edit', ["ruta" => $route , "puntos"=>$pointroutes, "id"=>$idruta]);
   }
 
   public function update(Request $request, $route)
