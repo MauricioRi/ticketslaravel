@@ -170,8 +170,8 @@ $insertpoint = $POINTS->save();
 
   public function update(Request $request, $route)
   {
-
-
+    Log::debug($request);
+    Log::debug($route);
 
     $request->validate(
       [
@@ -184,7 +184,7 @@ $insertpoint = $POINTS->save();
 
     $routeupdate = routes::find($route);
 
-
+    Log::debug($routeupdate);
     $routeupdate->Name_route = $request->name;
     $routeupdate->description = $request->description;
     $routeupdate->number_points = $request->numberpoints;

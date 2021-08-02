@@ -1,1 +1,0 @@
-<x-map-location-view />
