@@ -173,22 +173,22 @@ $insertpoint = $POINTS->save();
     Log::debug($request);
     Log::debug($route);
 
-    $request->validate(
-      [
-        'name' => 'required',
-        'description' => 'required',
-        'numberpoints' => 'required|numeric'
-      ]
+    // $request->validate(
+    //   [
+    //     'name' => 'required',
+    //     'description' => 'required',
+    //     'numberpoints' => 'required|numeric'
+    //   ]
 
-    );
+    // );
 
-    $routeupdate = routes::find($route);
+    //$routeupdate = routes::find($route);
 
-    Log::debug($routeupdate);
-    $routeupdate->Name_route = $request->name;
-    $routeupdate->description = $request->description;
-    $routeupdate->number_points = $request->numberpoints;
-    $routeupdate->save();
+    // Log::debug($routeupdate);
+    // $routeupdate->Name_route = $request->name;
+    // $routeupdate->description = $request->description;
+    // $routeupdate->number_points = $request->numberpoints;
+    // $routeupdate->save();
 
     return  redirect()->route("listar_Rutas");
 
