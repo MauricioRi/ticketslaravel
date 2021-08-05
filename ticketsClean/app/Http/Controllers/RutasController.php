@@ -170,18 +170,9 @@ $insertpoint = $POINTS->save();
 
   public function update(Request $request, $route)
   {
+
     Log::debug($request);
     Log::debug($route);
-
-    // $request->validate(
-    //   [
-    //     'name' => 'required',
-    //     'description' => 'required',
-    //     'numberpoints' => 'required|numeric'
-    //   ]
-
-    // );
-
     //$routeupdate = routes::find($route);
 
     // Log::debug($routeupdate);
@@ -189,11 +180,48 @@ $insertpoint = $POINTS->save();
     // $routeupdate->description = $request->description;
     // $routeupdate->number_points = $request->numberpoints;
     // $routeupdate->save();
+    $table_costpoint= $request->secretcamp;
+   $rooms = json_decode($table_costpoint, true);
+   
+foreach($rooms as $name => $data) {
+  
+
+
+  $affected = DB::table('table_cost')
+              ->where('id_routes',$data["id_routes"])
+              ->where('id_origin',$data["origen"])
+              ->where('id_destination', $data["destino"])
+              ->update(['amount' =>$data["costo"]]);
+
+ 
+}
+$affected = DB::table('routes')
+           ->where('id',$route)
+           ->update([
+            'Name_route' =>$request->name,
+            'description' =>$request->description,
+           ]);
+// $algo= $request->listpoints;
+// $rooms = json_decode($algo, true);
+
+// foreach($rooms as $name => $data) {
+//   Log::debug($route);
+//   Log::debug($data["Name_route"]);
+//   Log::debug($data["description"]);
+           
+//           }
+
+
+
+// $affected = DB::table('table_cost')
+//            ->where('id_routes',$data["id_routes"])
+//            ->where('id_origin',$data["origen"])
+//            ->where('id_destination', $data["destino"])
+//            ->update(['amount' =>$data["costo"]]);
+           
+
+
 
     return  redirect()->route("listar_Rutas");
-
-
-    //return request()->all();
-
   }
 }

@@ -64,9 +64,5 @@
             </form>
 
         </div>
-
-
-
-
-        <script src="{{ asset('js/funcionesInsertarRutas.js') }}" defer></script>
+        <script defer src="{{ asset('js/funcionesInsertarRutas.js') }}" ></script>
     @endsection
