@@ -62,3 +62,4 @@ Route::any('usuarios', [Ctr\Usuarios::class, 'usuarios'])->name('usuarios')->mid
 Route::any('actusr', [Ctr\Usuarios::class, 'enableUsr'])->name('actusr')->middleware('auth');
 Route::any('newusr', [Ctr\Usuarios::class, 'createUsr'])->name('newusr')->middleware('auth');
 Route::any('accionesusuario/{action?}/{id?}', [Ctr\Usuarios::class, 'actionsUser'])->name('accionesusuario')->middleware('auth');
+Route::any('listar', [Ctr\Rutas::class, 'listar'])->name('listar')->middleware('auth');
