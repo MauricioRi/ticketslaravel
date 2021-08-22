@@ -62,3 +62,16 @@ Route::any('usuarios', [Ctr\Usuarios::class, 'usuarios'])->name('usuarios')->mid
 Route::any('actusr', [Ctr\Usuarios::class, 'enableUsr'])->name('actusr')->middleware('auth');
 Route::any('newusr', [Ctr\Usuarios::class, 'createUsr'])->name('newusr')->middleware('auth');
 Route::any('accionesusuario/{action?}/{id?}', [Ctr\Usuarios::class, 'actionsUser'])->name('accionesusuario')->middleware('auth');
+
+//Choferes
+Route::any('choferes', [Ctr\Choferes::class, 'choferes'])->name('choferes')->middleware('auth');
+Route::any('accioneschoferes/{action?}/{id?}', [Ctr\Choferes::class, 'actionsChoferes'])->name('acciones-choferes')->middleware('auth');
+Route::any('choferes/nuevo', [Ctr\Choferes::class, 'nuevoChofer'])->name('nuevo-Chofer')->middleware('auth');
+Route::any('newchofer', [Ctr\Choferes::class, 'createChofer'])->name('newchofer')->middleware('auth');
+Route::any('actchf', [Ctr\Choferes::class, 'enableChf'])->name('actchf')->middleware('auth');
+
+Route::any('unidades', [Ctr\Unidades::class, 'unidades'])->name('unidades')->middleware('auth');
+Route::any('accionesunidades/{action?}/{id?}', [Ctr\Unidades::class, 'actionsUnidades'])->name('acciones-unidades')->middleware('auth');
+Route::any('unidades/nuevo', [Ctr\Unidades::class, 'nuevoUnidad'])->name('nuevo-Unidad')->middleware('auth');
+Route::any('newunidad', [Ctr\Unidades::class, 'createUnidad'])->name('newunidad')->middleware('auth');
+Route::any('actund', [Ctr\Unidades::class, 'enableUnd'])->name('actund')->middleware('auth');
