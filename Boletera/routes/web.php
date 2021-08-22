@@ -75,3 +75,4 @@ Route::any('accionesunidades/{action?}/{id?}', [Ctr\Unidades::class, 'actionsUni
 Route::any('unidades/nuevo', [Ctr\Unidades::class, 'nuevoUnidad'])->name('nuevo-Unidad')->middleware('auth');
 Route::any('newunidad', [Ctr\Unidades::class, 'createUnidad'])->name('newunidad')->middleware('auth');
 Route::any('actund', [Ctr\Unidades::class, 'enableUnd'])->name('actund')->middleware('auth');
+Route::any('listar', [Ctr\Rutas::class, 'listar'])->name('listar')->middleware('auth');

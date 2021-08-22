@@ -19,8 +19,7 @@ class CreateTableCostTable extends Migration
              $table->integer('id_origin')->comment('id del origen');
              $table->integer('id_destination')->comment('id del destino');
              $table->decimal('amount', $precision = 8, $scale = 2)->comment('costo total');
-             $table->integer('id_consecutive')->comment('id del punto consecutivo asignado');
-             $table->timestamp('created_at')->nullable()->comment('fecha de creacion');
+              $table->timestamp('created_at')->nullable()->comment('fecha de creacion');
              $table->timestamp('modification_date')->nullable()->comment('fecha de creacion');
              $table->integer('user_create')->nullable()->comment('usuario que la creo');
              $table->integer('user_update')->nullable()->comment('usuario que la edito');
