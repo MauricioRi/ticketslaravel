@@ -1,0 +1,1 @@
+<div id="map">map</div><?php /**PATH C:\Projects\ticketUI\vendor\dhamkith\googlemap\src/../resources/views/components/location-view.blade.php ENDPATH**/ ?>
