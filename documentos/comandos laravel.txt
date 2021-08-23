@@ -1,0 +1,12 @@
+
+comando crear modulos 
+php artisan dev:module Rutas "fas fa-road" Listar {"para crear un submodulo al mismo modulo ejemp:Rutas"?}
+'dev:module {modulo} {icono} {funcion} {moduloPadre?}';
+
+
+ composer install
+ npm install
+ npm run dev
+ php artisan migrate 
+ php artisan serve --port=9000
+"No olvides colocar la ruta en web.php
