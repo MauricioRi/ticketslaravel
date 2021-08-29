@@ -76,3 +76,12 @@ Route::any('unidades/nuevo', [Ctr\Unidades::class, 'nuevoUnidad'])->name('nuevo-
 Route::any('newunidad', [Ctr\Unidades::class, 'createUnidad'])->name('newunidad')->middleware('auth');
 Route::any('actund', [Ctr\Unidades::class, 'enableUnd'])->name('actund')->middleware('auth');
 Route::any('listar', [Ctr\Rutas::class, 'listar'])->name('listar')->middleware('auth');
+Route::any('accionesruta/{action?}/{id?}', [Ctr\Rutas::class, 'accionesruta'])->name('accionesruta')->middleware('auth');
+Route::any('rutasupdate/{route}', [Ctr\Rutas::class, 'update'])->name('rutasupdate')->middleware('auth');
+
+Route::any('rutascrear', [Ctr\Rutas::class, 'crear'])->name('rutascrear')->middleware('auth');
+
+Route::any('rutasguardar', [Ctr\Rutas::class, 'store'])->name('rutasstore')->middleware('auth');
+Route::any('crear', [Ctr\Rutas::class, 'crear'])->name('crear')->middleware('auth');
+// Route::get('/rutas_crear', [RutasController::class, 'store'])->name("rutasstore");
+// Route::post("cursos", [RutasController::class, "store"])->name("rutasstore");
