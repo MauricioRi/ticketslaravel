@@ -21,6 +21,7 @@ class Rutas extends Controller
     }
 
     public function listar(Request $request)
+    //la opcion del menu de listar cargar las rutas y asignarle las acciones 
     {
         Log::debug($request);
 
@@ -65,6 +66,7 @@ class Rutas extends Controller
     }
 
     public function accionesruta(Request $request, $action, $id) {
+
     
         if($action == 'delete') {
             $this->initialChecks($request, 'baja');
@@ -73,6 +75,7 @@ class Rutas extends Controller
 
             //User::findOrFail($id)->delete();
         } else {
+            //la accion de el boton de editar 
             $this->initialChecks($request, 'modificacion');
 
          //   $this->results->objPorEditar = ModelsRutas::findOrFail($id);
@@ -133,6 +136,7 @@ class Rutas extends Controller
 
 
     public function update(Request $request, $route)
+    //funcion del botón de actualiar ruta 
     {
   
       Log::debug($request);
@@ -191,6 +195,8 @@ class Rutas extends Controller
 
 
     public function crear()
+    //te trae las geocercas y lo manda a la vista de crear una ruta 
+
   {
     //  compact("route"); es igual a ["ruta"=>$ruta]
     // return  view('login.login',compact("ruta"));
@@ -208,6 +214,7 @@ class Rutas extends Controller
 
 
   public function store(Request $request)
+  //para guardar
   {
 
    
@@ -258,4 +265,5 @@ $insertpoint = $POINTS->save();
    
 return  redirect()->route("listar");
   }
+  
 }
