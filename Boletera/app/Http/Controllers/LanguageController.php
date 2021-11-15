@@ -17,4 +17,9 @@ class LanguageController extends Controller
         }
         return redirect()->back();
     }
+
+    public function __construct()
+    {
+        parent::__construct();        
+    }
 }

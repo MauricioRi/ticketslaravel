@@ -15,7 +15,6 @@ class CreateTableCostTable extends Migration
     {
         Schema::create('table_cost', function (Blueprint $table) {
             $table->id();
-             // $table->increments('id');
             $table->integer('id_routes')->comment('id de la ruta');
              $table->integer('id_origin')->comment('id del origen');
              $table->integer('id_destination')->comment('id del destino');

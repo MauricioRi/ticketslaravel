@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers as Ctr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 /*
@@ -76,6 +77,16 @@ Route::any('unidades/nuevo', [Ctr\Unidades::class, 'nuevoUnidad'])->name('nuevo-
 Route::any('newunidad', [Ctr\Unidades::class, 'createUnidad'])->name('newunidad')->middleware('auth');
 Route::any('actund', [Ctr\Unidades::class, 'enableUnd'])->name('actund')->middleware('auth');
 Route::any('listar', [Ctr\Rutas::class, 'listar'])->name('listar')->middleware('auth');
+// Route::get('/rutas_crear', [RutasController::class, 'store'])->name("rutasstore");
+// Route::post("cursos", [RutasController::class, "store"])->name("rutasstore");
+
+//Asignacion
+Route::any('accionesasignacion/{action?}/{id?}', [Ctr\Vincular::class, 'actionsUnidades'])->name('acciones-asignaciones')->middleware('auth');
+Route::any('choferes-unidades', [Ctr\Vincular::class, 'choferesunidades'])->name('choferes-unidades')->middleware('auth');
+Route::any('asiguni', [Ctr\Vincular::class, 'asignarUnidad'])->name('asigunidad')->middleware('auth');
+//Rutas
+Route::any('rutas', [Ctr\Rutas::class, 'listar'])->name('rutas')->middleware('auth');
+Route::any('/nueva', [Ctr\Rutas::class, 'crear'])->name('crear-rutas')->middleware('auth');
 Route::any('accionesruta/{action?}/{id?}', [Ctr\Rutas::class, 'accionesruta'])->name('accionesruta')->middleware('auth');
 Route::any('rutasupdate/{route}', [Ctr\Rutas::class, 'update'])->name('rutasupdate')->middleware('auth');
 
@@ -83,5 +94,44 @@ Route::any('rutascrear', [Ctr\Rutas::class, 'crear'])->name('rutascrear')->middl
 
 Route::any('rutasguardar', [Ctr\Rutas::class, 'store'])->name('rutasstore')->middleware('auth');
 Route::any('crear', [Ctr\Rutas::class, 'crear'])->name('crear')->middleware('auth');
-// Route::get('/rutas_crear', [RutasController::class, 'store'])->name("rutasstore");
-// Route::post("cursos", [RutasController::class, "store"])->name("rutasstore");
+Route::any('nueva-ruta', [Ctr\Rutas::class, 'crear'])->name('nueva-ruta')->middleware('auth');
+//api
+
+Route::any('api/test', function () {
+    Log::debug("test on web ");
+});
+
+
+Route::get('api/getToken', function () {
+    return ["Token"=>csrf_token()];
+});
+
+Route::get('api/check', function () {
+    if (Auth::check()) {
+        return response()->json([
+            'message' => 'Logged'
+            ], 200);
+    } else {
+        return response()->json([
+            'message' => 'Unauthorized'
+            ], 401);
+    }
+});
+
+Route::post('api/inicio_sesion', [Ctr\ApiController::class, 'login']);
+
+Route::any('api/cerrar_sesion', [Ctr\ApiController::class, 'logout']);
+
+Route::get('api/precios/{ruta}', [Ctr\ApiController::class, 'listarPrecios']);
+
+Route::get('api/geocercas/{ruta?}', [Ctr\ApiController::class, 'listarGeocercas']);
+
+Route::get('api/rutas', [Ctr\ApiController::class, 'listarRutas']);
+
+Route::post('api/estado-pasajeros', [Ctr\Reportes::class, 'reportes_pasajeros']);
+
+Route::post('api/reportes-egresos', [Ctr\Reportes::class, 'reportes_egresos']);
+
+
+
+Route::get('api/tipos-egresos', [Ctr\Reportes::class, 'tipos_egresos']);

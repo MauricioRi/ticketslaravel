@@ -39,4 +39,9 @@ class ResetPasswordController extends Controller
             ['token' => $token, 'email' => $request->email, 'pageConfigs' => $pageConfigs]
         );
     }
+
+    public function __construct()
+    {
+        parent::__construct();        
+    }
 }

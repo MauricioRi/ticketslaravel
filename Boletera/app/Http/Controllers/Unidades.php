@@ -149,15 +149,15 @@ class Unidades extends Controller
             $id = $request->input('id');
 
             // Create user
-            $user = $id ? ModelsUnidades::find($id) : new ModelsUnidades();
+            $obj = $id ? ModelsUnidades::find($id) : new ModelsUnidades();
 
-            $user->nombre = strtoupper($request->input('nombre'));
-            $user->empresa = Auth::user()->empresa;
+            $obj->nombre = strtoupper($request->input('nombre'));
+            $obj->empresa = Auth::user()->empresa;
             // Check edit or create
-            $user->usuario = strtolower($request->input('usuario'));
+            $obj->activo=1;
 
             // Save user
-            $user->save();
+            $obj->save();
 
             // Clear editable user
             session()->forget('usuarioPorEditar');

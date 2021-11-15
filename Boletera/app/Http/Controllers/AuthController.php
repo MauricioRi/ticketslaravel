@@ -10,6 +10,12 @@ use Validator;
 class AuthController extends Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth');
+    }
+
     /**
     * Create user
     *
@@ -21,6 +27,7 @@ class AuthController extends Controller
     */
     public function register(Request $request)
     {
+
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',

@@ -1,14 +1,14 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Gestión de usuarios')
+@section('title', 'Gestión de unidades')
 
 @section('content')
 
-    @php $user = $results->usuarioPorEditar; @endphp
+    @php $obj = $results->usuarioPorEditar; @endphp
     <form action="{{ route('newunidad') }}" id="newUnidad" method="post">
         @csrf
-        @if ($user !== null)
-            <input type="hidden" value="{{ $user->id }}" id="id" name="id" />
+        @if ($obj !== null)
+            <input type="hidden" value="{{ $obj->id }}" id="id" name="id" />
         @endif
         <div class="row">
             <div class="col-12">
@@ -28,11 +28,11 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="nombre">Nombre(s):</label>
+                                    <label for="nombre">Nombre:</label>
                                     <input type="text" class="form-control @error('nombre') is-invalid @enderror"
                                         id="nombre" name="nombre"
-                                        value="{{ old('nombre') ?: ($user !== null ? $user->nombre : '') }}"
-                                        placeholder="Nombre(s) del usuario" required />
+                                        value="{{ old('nombre') ?: ($obj !== null ? $obj->nombre : '') }}"
+                                        placeholder="Nombre de la unidad" required />
                                 </div>
                             </div>
                         </div>                        
@@ -41,7 +41,7 @@
                         <a href="{{ route('inicio') }}" class="btn btn-outline-secondary"><i
                                 class="fas fa-chevron-left fa-sm fa-fw"></i><span class="mtxt">Regresar</span></a>
                         <button class="dt-button create-new btn btn-primary" type="submit">
-                            @if ($user !== null)
+                            @if ($obj !== null)
                                 <i class="fas fa-save fa-sm fa-fw"></i><span class="mtxt">Guardar</span>
                             @else
                                 <i class="fas fa-plus fa-sm fa-fw"></i><span class="mtxt">Agregar</span>

@@ -15,8 +15,7 @@ class CreateTablePointsRoutes extends Migration
     {
         Schema::create('points_routes', function (Blueprint $table) {
             $table->id();
-           // $table->increments('id');
-           $table->integer('id_consecutivo');
+            $table->integer('id_consecutivo');
             $table->integer('id_routes');
             $table->integer('id_empresa');
             $table->integer('id_geofence');
