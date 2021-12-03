@@ -83,4 +83,4 @@ Route::post('testImg', [Ctr\Reportes::class, 'addimage'])->name('image.upload.po
 
 Route::post('reportes-pasajeros', [Ctr\Reportes::class, 'reportes_pasajeros'])->name('reportes-pasajeros')->middleware('auth:api');
 
-Route::get('get-eventos', [Ctr\ApiController::class, 'get_eventos'])->middleware('auth:api');
+

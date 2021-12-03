@@ -95,3 +95,4 @@ Route::any('rutascrear', [Ctr\Rutas::class, 'crear'])->name('rutascrear')->middl
 Route::any('rutasguardar', [Ctr\Rutas::class, 'store'])->name('rutasstore')->middleware('auth');
 Route::any('crear', [Ctr\Rutas::class, 'crear'])->name('crear')->middleware('auth');
 Route::any('nueva-ruta', [Ctr\Rutas::class, 'crear'])->name('nueva-ruta')->middleware('auth');
+Route::get('get-eventos', [Ctr\ApiController::class, 'get_eventos'])->middleware('auth');

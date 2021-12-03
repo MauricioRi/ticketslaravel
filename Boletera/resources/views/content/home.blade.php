@@ -36,7 +36,15 @@
       },
       {
         field: "url",
-        title: "Nombre"
+        title: "Imagen"
+      },
+      {
+        field: "created_at",
+        title: "Hora"
+      },
+      {
+        field: "name",
+        title: "Usuario"
       },
 
     ]

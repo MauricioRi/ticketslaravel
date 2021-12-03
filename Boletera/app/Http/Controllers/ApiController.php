@@ -112,7 +112,11 @@ class ApiController extends Controller
 
     public function get_eventos()
     {
-        return Egreso::all();
+        $data = DB::table('egresos')
+        ->join('users', 'users.id', 'egresos.idusuario')
+        ->select('egresos.*', 'users.name')
+        ->get();
+        return $data;
     }
 
     public function check(Request $request)
