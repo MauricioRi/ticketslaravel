@@ -21,7 +21,7 @@ Route::group([
     'prefix' => 'auth'
 ], function () {
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);    
+    Route::post('register', [AuthController::class, 'register']);
 
     Route::group([
         'middleware' => 'auth:api'
@@ -34,28 +34,53 @@ Route::group([
     return $request->user();
 });*/
 
-Route::any('api/test', function () {
+Route::any('test', function () {
     Log::debug("test on web ");
 });
 
 
-Route::get('api/getToken', function () {
-    return ["Token"=>csrf_token()];
+Route::get('getToken', function () {
+    return ["Token" => csrf_token()];
 });
 
-Route::get('api/check', function () {
-    if (Auth::check()) {
-        return response()->json([
-            'message' => 'Logged'
-            ], 200);
-    } else {
-        return response()->json([
-            'message' => 'Unauthorized'
-            ], 401);
-    }
+//api
+
+Route::any('test', function () {
+    Log::debug("test on web ");
 });
 
-Route::post('api/inicio_sesion', [Ctr\ApiController::class, 'login']);
 
-Route::any('api/cerrar_sesion', [Ctr\ApiController::class, 'logout']);
+Route::get('getToken', function () {
+    return ["Token" => csrf_token()];
+});
 
+Route::get('check', [Ctr\GenericController::class, 'check'])->middleware('auth:api');
+
+Route::get('check-connection', function () {
+    return 'ok';
+});
+
+
+Route::post('inicio_sesion', [Ctr\ApiController::class, 'login']);
+
+Route::any('cerrar_sesion', [Ctr\ApiController::class, 'logout']);
+
+Route::get('precios/{ruta}', [Ctr\ApiController::class, 'listarPrecios'])->middleware('auth:api');
+
+Route::get('geocercas/{ruta?}', [Ctr\ApiController::class, 'listarGeocercas'])->middleware('auth:api');
+
+Route::get('rutas', [Ctr\ApiController::class, 'listarRutas'])->middleware('auth:api');
+
+
+
+Route::post('reportes-egresos', [Ctr\Reportes::class, 'reportes_egresos'])->middleware('auth:api');
+
+Route::post('reportes-egresos', [Ctr\Reportes::class, 'addimage'])->name('reportes-egresos')->middleware('auth:api');
+
+Route::get('tipos-egresos', [Ctr\Reportes::class, 'tipos_egresos'])->middleware('auth:api');
+
+Route::post('testImg', [Ctr\Reportes::class, 'addimage'])->name('image.upload.post')->middleware('auth:api');
+
+Route::post('reportes-pasajeros', [Ctr\Reportes::class, 'reportes_pasajeros'])->name('reportes-pasajeros')->middleware('auth:api');
+
+Route::get('get-eventos', [Ctr\ApiController::class, 'get_eventos'])->middleware('auth:api');

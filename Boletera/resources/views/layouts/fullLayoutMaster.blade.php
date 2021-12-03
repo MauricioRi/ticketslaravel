@@ -19,6 +19,7 @@ class="{{ $configData['theme'] === 'light' ? '' : $configData['layoutTheme'] }}"
 
     <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo/favicon.ico') }}">
+    
 
     {{-- Include core + vendor Styles --}}
     @include('panels/styles')

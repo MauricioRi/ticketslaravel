@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Egreso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -15,6 +16,7 @@ class ApiController extends Controller
     public function __construct()
     {
         parent::__construct();
+        //$this->middleware('auth');
     }
 
     public function login(Request $request)
@@ -40,6 +42,8 @@ class ApiController extends Controller
         if ($request->remember_me)
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
+        $user->api_token=$tokenResult->accessToken;
+        $user->save();
         return response()->json([
             'usuario' => $user->name,
             'access_token' => $tokenResult->accessToken,
@@ -69,7 +73,7 @@ class ApiController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
+        Log::alert($request);
         return response()->json([
             'message' => 'Sesión finalizada con exito'
         ]);
@@ -104,5 +108,24 @@ class ApiController extends Controller
 
         $data = DB::table('routes')->get();
         return $data;
+    }
+
+    public function get_eventos()
+    {
+        return Egreso::all();
+    }
+
+    public function check(Request $request)
+    {
+        Log::alert($request);
+        if (Auth::check()) {
+            return response()->json([
+                'message' => 'Logged'
+                ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+                ], 401);
+        }
     }
 }

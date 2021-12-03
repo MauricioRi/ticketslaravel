@@ -13,7 +13,9 @@ class Egreso extends Model
         'idusuario',
         'idruta',
         'idegreso',
-        'valor'      
+        'valor',
+        'nombre',
+        'url'    
     ];
 
     protected $table = 'egresos';

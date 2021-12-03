@@ -35,4 +35,5 @@
 
 {{-- page script --}}
 @yield('page-script')
+@yield('page-script-ajax')
 {{-- page script --}}

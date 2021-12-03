@@ -37,7 +37,7 @@ class Reportes extends Controller
         $obj->boletos = $request['boletos'];
         
         Log::alert($request);
-        return 'ok';
+        return view('components.reportes-pasajeros');
     }
 
     public function tipos_egresos(Request $request)
@@ -45,5 +45,57 @@ class Reportes extends Controller
         
         $egresos = DB::table('tipos_egresos')->select('*')->get();
         return $egresos;
+    }
+
+    public function imageUploadPost(Request $request)
+
+    {
+
+        $request->validate([
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
+    
+
+        $imageName = time().'.'.$request->image->extension();  
+
+     
+
+        $request->image->move(public_path('images'), $imageName);
+
+  
+
+        /* Store $imageName name in DATABASE from HERE */
+
+    
+
+        return back()
+
+            ->with('success','You have successfully upload image.')
+
+            ->with('image',$imageName); 
+
+    }
+
+    public function addimage(Request $request)
+    {        
+        Log::alert($request);
+        $egreso = new Egreso();
+        
+        
+        if ($request->hasFile('image')) {    
+            $path = $request->file('image')->store('public');            
+            $egreso->url = $path;
+            $imageName = time().'.'.$request->image->extension();       
+            $egreso->nombre = $imageName;
+            $egreso->idruta = $request['idruta'];
+            $egreso->idruta=$request['idegreso'];
+            $egreso->valor=$request['valor'];
+            $egreso->idusuario=Auth::user()->id;
+        }        
+        $egreso->save();        
+        return $egreso;
     }
 }
